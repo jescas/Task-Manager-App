@@ -17,7 +17,7 @@ namespace TaskManagerProject.Models
         public double TotalCost { get; set; }
         public virtual User ProjectManager { get; set; } //One to Many
         public virtual ICollection<UserProject> Devs { get; set; } //Many to Many
-        public virtual ICollection<Task> Tasks { get; set; } //One to Many
+        public virtual ICollection<DevTask> DevTasks { get; set; } //One to Many
         public virtual ICollection<Note> Notes { get; set; } //One to Many
         //public virtual ICollection<Note> SentNotes {get; set; } include?
     }

@@ -15,6 +15,6 @@ namespace TaskManagerProject.Models
         public User Recipient { get; set; } //One to Many
         //public User Author { get; set; } // One to Many keep in?
         public virtual Project Project { get; set; } //One to Many 
-        public virtual Task Task { get; set; } // make nullable?
+        public virtual DevTask DevTask { get; set; } // make nullable?
     }
 }
