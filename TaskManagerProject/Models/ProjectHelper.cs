@@ -9,7 +9,7 @@ namespace TaskManagerProject.Models
 {
     public class ProjectHelper
     {
-        public virtual Project Project { get; set; };
+        public virtual Project Project { get; set; }
 
         static ApplicationDbContext db = new ApplicationDbContext();
 
@@ -21,7 +21,7 @@ namespace TaskManagerProject.Models
 
         public static List<string> GetAllProjects()
         {
-            return ;
+            return db.;
         }
 
         public static void CreateProject(string projectName)
