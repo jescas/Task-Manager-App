@@ -7,6 +7,11 @@ namespace TaskManagerProject.Models
 {
     public class DevTask
     {
+        public DevTask()
+        {
+            HashSet<UserDevTask> userDevTasks = new HashSet<UserDevTask>();
+            HashSet<Note> notes = new HashSet<Note>();
+        }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
