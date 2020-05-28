@@ -21,7 +21,7 @@ namespace TaskManagerProject.Models
 
         public int GetAllProjects()
         {
-            return Project.Id;
+            return db.;
         }
 
         public static void CreateProject(string projectName)
