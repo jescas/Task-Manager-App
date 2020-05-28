@@ -21,7 +21,7 @@ namespace TaskManagerProject.Models
         public bool IsComplete { get; set; }
         //enum Priority add in later migration
         public virtual ICollection<string> Comments { get; set; }
-        public virtual ICollection<UserDevTask> Devs{ get; set; } // Many to Many
+        public virtual ICollection<UserDevTask> UserDevTaskss{ get; set; } // Many to Many
         public Project Project { get; set; } //One to Many
         public virtual ICollection<Note> Notes { get; set; }
     }

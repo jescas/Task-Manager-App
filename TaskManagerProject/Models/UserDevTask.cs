@@ -7,7 +7,7 @@ namespace TaskManagerProject.Models
 {
     public class UserDevTask
     {
-        public int Id { get; set; }
-        public int UserId { get; set; }
+        public int DevTaskId { get; set; }
+        public int AppUserId { get; set; }
     }
 }

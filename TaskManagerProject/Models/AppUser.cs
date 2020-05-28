@@ -5,12 +5,12 @@ using System.Web;
 
 namespace TaskManagerProject.Models
 {
-    public class User : ApplicationUser
+    public class AppUser : ApplicationUser
     {
         public string Name { get; set; }
         public double Salary { get; set; }
-        public virtual ICollection<UserProject> Projects { get; set; } //Many to Many
-        public virtual ICollection<UserDevTask> Tasks { get; set; } //Many to Many
+        public virtual ICollection<UserProject> UserProjects { get; set; } //Many to Many
+        public virtual ICollection<UserDevTask> UserDevTasks { get; set; } //Many to Many
         public virtual ICollection<Note> Notes { get; set; } //One to Many
     }
 }

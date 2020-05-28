@@ -19,9 +19,11 @@ namespace TaskManagerProject.Models
         static RoleManager<IdentityRole> projectManager = new RoleManager<IdentityRole>
             (new RoleStore<IdentityRole>(db));
 
-        public int GetAllProjects()
+        public List<string> GetAllProjects()
         {
-            return db.;
+            var result = 
+
+            return result.ToList();
         }
 
         public static void CreateProject(string projectName)

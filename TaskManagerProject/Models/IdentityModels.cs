@@ -21,6 +21,15 @@ namespace TaskManagerProject.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<DevTask> DevTasks { get; set; }
+        public DbSet<Note> Notes { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<ProjectHelper> ProjectHelpers { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<UserDevTask> UserDevTasks { get; set; }
+        public DbSet<UserManager> UserManagers { get; set; }
+        public DbSet<UserProject> UserProject { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

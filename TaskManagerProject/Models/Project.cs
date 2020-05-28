@@ -25,7 +25,7 @@ namespace TaskManagerProject.Models
         public bool IsCompleted = false;
         public double Budget { get; set; }
         public double TotalCost { get; set; }
-        public virtual ICollection<UserProject> Staff { get; set; } //Many to Many
+        public virtual ICollection<UserProject> UserProjects { get; set; } //Many to Many
         public virtual ICollection<DevTask> DevTasks { get; set; } //One to Many
         public virtual ICollection<Notification> Notifications { get; set; } //One to Many
         public virtual ICollection<Note> Notes { get; set; }
