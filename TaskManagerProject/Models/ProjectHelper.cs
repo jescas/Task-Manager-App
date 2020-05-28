@@ -9,7 +9,7 @@ namespace TaskManagerProject.Models
 {
     public class ProjectHelper
     {
-        public virtual Project Project { get; set; };
+        public virtual Project Project { get; set; }
 
         static ApplicationDbContext db = new ApplicationDbContext();
 
@@ -19,9 +19,9 @@ namespace TaskManagerProject.Models
         static RoleManager<IdentityRole> projectManager = new RoleManager<IdentityRole>
             (new RoleStore<IdentityRole>(db));
 
-        public static List<string> GetAllProjects()
+        public int GetAllProjects()
         {
-            return ;
+            return Project.Id;
         }
 
         public static void CreateProject(string projectName)
