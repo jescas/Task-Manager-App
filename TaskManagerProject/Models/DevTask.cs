@@ -11,6 +11,8 @@ namespace TaskManagerProject.Models
         {
             HashSet<UserDevTask> userDevTasks = new HashSet<UserDevTask>();
             HashSet<Note> notes = new HashSet<Note>();
+            HashSet<Notification> notifications = new HashSet<Notification>();
+
         }
         public int Id { get; set; }
         public string Name { get; set; }
@@ -24,5 +26,6 @@ namespace TaskManagerProject.Models
         public virtual ICollection<UserDevTask> UserDevTaskss{ get; set; } // Many to Many
         public Project Project { get; set; } //One to Many
         public virtual ICollection<Note> Notes { get; set; }
+        public virtual ICollection<Notification> Notification { get; set; }
     }
 }
