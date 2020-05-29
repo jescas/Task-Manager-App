@@ -21,28 +21,16 @@ namespace TaskManagerProject.Models
 
         public List<string> GetAllProjects()
         {
-            var result = 
+            var result = db.Projects.Select(p => p.Name).ToList();
 
-            return result.ToList();
+            return result;
         }
 
-        public static void CreateProject(string projectName)
+        public static ICollection<int> ProjectsForUser(int userId)
         {
-            if (!projectManager.RoleExists(projectName))
-            {
-                projectManager.Create(new Project { Name = projectName });
-            }
-        }
-        public static void DeleteProject(string projectName)
-        {
-            if (projectManager.RoleExists(projectName))
-            {
-                projectManager.Delete(new Project { Name = projectName });
-            }
-        }
-        public static List<string> ProjectsForUser(string userId)
-        {
-            return userManager.GetRoles(userId).ToList();
+            var result = db.UserProject.Where(up => up.AppUserId == userId).Select(p => p.ProjectId);
+
+            return result.ToList(); 
         }
     }
 }
