@@ -22,15 +22,37 @@ namespace TaskManagerProject.Models
         public List<string> GetAllProjects()
         {
             var result = db.Projects.Select(p => p.Name).ToList();
-
             return result;
         }
 
         public static ICollection<int> ProjectsForUser(int userId)
         {
             var result = db.UserProject.Where(up => up.AppUserId == userId).Select(p => p.ProjectId);
+            return result.ToList();
+        }
 
-            return result.ToList(); 
+        public void AddProject(Project projectName)
+        {
+            if (!db.Projects.Contains(projectName))
+            {
+                var newProject = db.Projects.Add(projectName);
+            }
+            else
+            {
+                throw new Exception("Project Already Exists");
+            }
+        }
+
+        public void DeleteProject(Project projectId)
+        {
+            if (!db.Projects.Contains(projectId))
+            {
+                db.Projects.Remove(projectId);
+            }
+            else
+            {
+                throw new Exception("Project Does Not Exist");
+            }
         }
     }
 }
