@@ -4,9 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace TaskManagerProject.Models
 {
+    [Authorize(Roles = "ProjectManager")]
     public class ProjectHelper
     {
         public virtual Project Project { get; set; }
@@ -19,13 +21,14 @@ namespace TaskManagerProject.Models
         static RoleManager<IdentityRole> projectManager = new RoleManager<IdentityRole>
             (new RoleStore<IdentityRole>(db));
 
+        
         public List<string> GetAllProjects()
         {
             var result = db.Projects.Select(p => p.Name).ToList();
             return result;
         }
 
-        public static ICollection<int> ProjectsForUser(int userId)
+        public ICollection<int> ProjectsForUser(int userId)
         {
             var result = db.UserProject.Where(up => up.AppUserId == userId).Select(p => p.ProjectId);
             return result.ToList();
