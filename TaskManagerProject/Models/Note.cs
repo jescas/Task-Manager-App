@@ -9,7 +9,9 @@ namespace TaskManagerProject.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public int ProjectId { get; set; }
         public virtual Project Project { get; set; } //One to Many 
+        public int DevTaskId { get; set; }
         public virtual DevTask DevTask { get; set; } 
     }
 }

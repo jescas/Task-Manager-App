@@ -10,7 +10,7 @@ namespace TaskManagerProject.Models
     {
         public DevTask()
         {
-            HashSet<AppUserDevTask> userDevTasks = new HashSet<AppUserDevTask>();
+            HashSet<ApplicationUser> applicationUsers = new HashSet<ApplicationUser>();
             HashSet<Note> notes = new HashSet<Note>();
             HashSet<Notification> notifications = new HashSet<Notification>();
         }
@@ -24,7 +24,8 @@ namespace TaskManagerProject.Models
         public bool IsComplete { get; set; }
         //enum Priority add in later migration
         public virtual ICollection<string> Comments { get; set; }
-        public virtual ICollection<AppUserDevTask> UserDevTasks { get; set; } // Many to Many
+        public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; } // Many to Many
+        public int ProjectId { get; set; }
         public Project Project { get; set; } //One to Many
         public virtual ICollection<Note> Notes { get; set; }
         public virtual ICollection<Notification> Notification { get; set; }
