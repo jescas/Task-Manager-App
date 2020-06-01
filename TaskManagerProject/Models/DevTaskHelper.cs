@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -29,54 +27,50 @@ namespace TaskManagerProject.Models
 
         public static ICollection<int> TasksForUser(string userId)
         {
-            var result = db.DevTasks.Where(up => up.Devs.Select(d => d.Id).Contains(userId)).Select(t => t.Id);
+            var result = db.DevTasks.Where(up => up.AppUserId == userId).Select(t => t.DevTaskId);
 
             return result.ToList();
         }
-        public static ICollection<int> TasksForProject(int projectId)
+        public static ICollection<int> TasksForProject(int taskId)
         {
-            var result = db.DevTasks.Where(up => up.Project.Id == projectId).Select(t => t.Id);
+            var result = db.DevTasks.Where(up => up.AppUserId == userId).Select(t => t.DevTaskId);
 
             return result.ToList();
         }
         public static DevTask CreateDevTask(string name, string description, DateTime deadline)
         {
-            DevTask newTask = new DevTask
+            newTask = new DevTask
             {
                 Name = name,
                 Description = description,
-                StartDate = DateTime.Now,
-                //Deadline = deadline,
+                StartDate = DateTime.Now(),
+                Deadline = deadline,
                 PercentCompleted = 0,
-                //IsCompleted = false,
+                IsCompleted = false,
             };
             return newTask;
         }
-        public static void AssignDevTask(ApplicationUser user, DevTask task)
+        public static AssignDevTask(AppUser user, DevTask task)
         {
-            if(user.Roles.Contains("Developer"))
+            if(user.Role == "Developer")
             {
-                user.DevTasks.Add(task);
-                task.Devs.Add(user);
+                UserDevTask userTask = new UserDevTask
+                {
+                    AppUserId = user.Id,
+                    DevTaskId = task .Id
+                };
+                user.DevTasks.Add(userTask);
+                task.Devs.Add(userTask);
             }
         }
-        public static void AssignDevsToTask(List<ApplicationUser> devs, DevTask task)
-        {
-            foreach(ApplicationUser dev in devs)
-            {
-                if (!dev.DevTasks.Contains(task) && !task.Devs.Contains(dev))
-                {
-                    AssignDevTask(dev, task);
-                }
-            }
-        } 
-        public static void UpdateDevTask(DevTask task)
+        //Assign 
+        public static UpdateDevTask(Task task)
         {
             
         }
-        public static void  DeleteDevTask(DevTask task)
+        public static DeleteDevTask(Task task)
         {
-            db.DevTasks.Remove(task);
+            db.DevTasks.Delete(task);
         }
 
         //AddComment(string comment,int taskId) 
