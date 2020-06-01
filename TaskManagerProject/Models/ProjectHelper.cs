@@ -28,7 +28,7 @@ namespace TaskManagerProject.Models
             return result;
         }
 
-        public ICollection<int> ProjectsForUser(int userId)
+        public ICollection<int?> ProjectsForUser(int userId)
         {
             var result = db.UserProjects.Where(up => up.AppUserId == userId).Select(p => p.ProjectId);
             return result.ToList();
