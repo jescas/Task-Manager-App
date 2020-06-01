@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -9,10 +11,11 @@ namespace TaskManagerProject.Models
     {
         public DevTask()
         {
-            HashSet<UserDevTask> userDevTasks = new HashSet<UserDevTask>();
+            HashSet<ApplicationUser> userDevTasks = new HashSet<ApplicationUser>();
             HashSet<Note> notes = new HashSet<Note>();
             HashSet<Notification> notifications = new HashSet<Notification>();
         }
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -22,8 +25,8 @@ namespace TaskManagerProject.Models
         public bool IsComplete { get; set; }
         //enum Priority add in later migration
         public virtual ICollection<string> Comments { get; set; }
-        [InverseProperty("")]
-        public virtual ICollection<UserDevTask> UserDevTasks{ get; set; } // Many to Many
+
+        public virtual ICollection<ApplicationUser> Devs { get; set; } // Many to Many
         public Project Project { get; set; } //One to Many
         public virtual ICollection<Note> Notes { get; set; }
         public virtual ICollection<Notification> Notification { get; set; }
