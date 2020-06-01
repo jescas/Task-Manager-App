@@ -9,15 +9,15 @@ namespace TaskManagerProject.Models
     {
         public AppUser()
         {
-            HashSet<UserProject> userProjects = new HashSet<UserProject>();
-            HashSet<UserDevTask> userDevTasks = new HashSet<UserDevTask>();
+            HashSet<AppUserProject> userProjects = new HashSet<AppUserProject>();
+            HashSet<AppUserDevTask> userDevTasks = new HashSet<AppUserDevTask>();
             HashSet<Note> notes = new HashSet<Note>();
             HashSet<Notification> notifications = new HashSet<Notification>();
         }
         public string Name { get; set; }
         public double Salary { get; set; }
-        public virtual ICollection<UserProject> UserProjects { get; set; } //Many to Many
-        public virtual ICollection<UserDevTask> UserDevTasks { get; set; } //Many to Many
+        public virtual ICollection<AppUserProject> UserProjects { get; set; } //Many to Many
+        public virtual ICollection<AppUserDevTask> UserDevTasks { get; set; } //Many to Many
         public virtual ICollection<Note> Notes { get; set; } //One to Many
         public virtual ICollection<Notification> Notifications { get; set; }
     }

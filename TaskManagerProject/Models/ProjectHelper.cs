@@ -30,7 +30,7 @@ namespace TaskManagerProject.Models
 
         public ICollection<int> ProjectsForUser(int userId)
         {
-            var result = db.UserProject.Where(up => up.AppUserId == userId).Select(p => p.ProjectId);
+            var result = db.UserProjects.Where(up => up.AppUserId == userId).Select(p => p.ProjectId);
             return result.ToList();
         }
 

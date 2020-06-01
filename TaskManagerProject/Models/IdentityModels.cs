@@ -27,9 +27,9 @@ namespace TaskManagerProject.Models
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<ProjectHelper> ProjectHelpers { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
-        public DbSet<UserDevTask> UserDevTasks { get; set; }
+        public DbSet<AppUserDevTask> UserDevTasks { get; set; }
         public DbSet<UserManager> UserManagers { get; set; }
-        public DbSet<UserProject> UserProject { get; set; }
+        public DbSet<AppUserProject> UserProjects { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

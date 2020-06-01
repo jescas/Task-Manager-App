@@ -5,9 +5,11 @@ using System.Web;
 
 namespace TaskManagerProject.Models
 {
-    public class UserProject
+    public class AppUserDevTask
     {
-        public int ProjectId { get; set; }
+        public int DevTaskId { get; set; }
+        public virtual DevTask DevTask { get; set; }
         public int AppUserId { get; set; }
+        public virtual AppUser AppUser { get; set; }
     }
 }

@@ -243,8 +243,8 @@
     <Compile Include="Models\ProjectHelper.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\UserManager.cs" />
-    <Compile Include="Models\UserProject.cs" />
-    <Compile Include="Models\UserDevTask.cs" />
+    <Compile Include="Models\AppUserProject.cs" />
+    <Compile Include="Models\AppUserDevTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

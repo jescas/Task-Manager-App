@@ -10,7 +10,7 @@ namespace TaskManagerProject.Models
         public Project(string name)
         {
             this.Name = name;
-            HashSet<UserProject> userProjects = new HashSet<UserProject>();
+            HashSet<AppUserProject> userProjects = new HashSet<AppUserProject>();
             HashSet<DevTask> devTasks = new HashSet<DevTask>();
             HashSet<Notification> notifactions = new HashSet<Notification>();
             HashSet<Note> notes = new HashSet<Note>();
@@ -25,7 +25,7 @@ namespace TaskManagerProject.Models
         public bool IsCompleted = false;
         public double Budget { get; set; }
         public double TotalCost { get; set; }
-        public virtual ICollection<UserProject> UserProjects { get; set; } //Many to Many
+        public virtual ICollection<AppUserProject> UserProjects { get; set; } //Many to Many
         public virtual ICollection<DevTask> DevTasks { get; set; } //One to Many
         public virtual ICollection<Notification> Notifications { get; set; } //One to Many
         public virtual ICollection<Note> Notes { get; set; }
