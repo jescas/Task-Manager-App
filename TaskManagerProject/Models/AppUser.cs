@@ -16,7 +16,9 @@ namespace TaskManagerProject.Models
         }
         public string Name { get; set; }
         public double Salary { get; set; }
+        [InverseProperty("User")]
         public virtual ICollection<UserProject> UserProjects { get; set; } //Many to Many
+        [InverseProperty("User")]
         public virtual ICollection<UserDevTask> UserDevTasks { get; set; } //Many to Many
         public virtual ICollection<Note> Notes { get; set; } //One to Many
         public virtual ICollection<Notification> Notifications { get; set; }
