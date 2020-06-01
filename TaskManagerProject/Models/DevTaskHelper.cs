@@ -54,7 +54,7 @@ namespace TaskManagerProject.Models
         }
         public static void AssignDevTask(ApplicationUser user, DevTask task)
         {
-            if(user.Roles.Contains("Developer"))
+            if(UserManager.checkUserRole(user.Id, "Developer"))
             {
                 user.DevTasks.Add(task);
                 task.ApplicationUsers.Add(user);
