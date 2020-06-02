@@ -35,8 +35,6 @@ namespace TaskManagerProject.Models
         public DbSet<DevTask> DevTasks { get; set; }
         public DbSet<Note> Notes { get; set; }
         public DbSet<Notification> Notifications { get; set; }
-        //public DbSet<ProjectHelper> ProjectHelpers { get; set; }
-        //public DbSet<UserManager> UserManagers { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

@@ -52,24 +52,24 @@ namespace TaskManagerProject.Models
             };
             return newTask;
         }
-        //public static void AssignDevTask(ApplicationUser user, DevTask task)
-        //{
-        //    if (user.Roles.Contains("Developer"))
-        //    {
-        //        user.DevTasks.Add(task);
-        //        task.ApplicationUsers.Add(user);
-        //    }
-        //}
-        //public static void AssignDevsToTask(List<ApplicationUser> devs, DevTask task)
-        //{
-        //    foreach (ApplicationUser dev in devs)
-        //    {
-        //        if (!dev.DevTasks.Contains(task) && !task.ApplicationUsers.Contains(dev))
-        //        {
-        //            AssignDevTask(dev, task);
-        //        }
-        //    }
-        //}
+        public static void AssignDevTask(ApplicationUser user, DevTask task)
+        {
+            if(UserManager.checkUserRole(user.Id, "Developer"))
+            {
+                user.DevTasks.Add(task);
+                task.ApplicationUsers.Add(user);
+            }
+        }
+        public static void AssignDevsToTask(List<ApplicationUser> devs, DevTask task)
+        {
+            foreach(ApplicationUser dev in devs)
+            {
+                if (!dev.DevTasks.Contains(task) && !task.ApplicationUsers.Contains(dev))
+                {
+                    AssignDevTask(dev, task);
+                }
+            }
+        } 
         public static void UpdateDevTask(DevTask task)
         {
             
