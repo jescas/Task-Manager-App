@@ -20,9 +20,10 @@ namespace TaskManagerProject.Models
             (new RoleStore<IdentityRole>(db));
 
         
-        public List<string> GetAllProjects()
+        public ICollection<Project> GetAllProjects()
         {
-            var result = db.Projects.Select(p => p.Name).ToList();
+            var result = db.Projects.ToList();
+
             return result;
         }
 

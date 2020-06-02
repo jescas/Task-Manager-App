@@ -1,0 +1,16 @@
+﻿@model ICollection<TaskManagerProject.Models.Project>
+@{
+    ViewBag.Title = "SeeAllProjects";
+}
+
+<h2>See All Projects</h2>
+
+@foreach(var project in Model)
+{
+<p>Current Project: @project.Name</p>
+<br />
+<p>Assigned Task: @project.DevTasks.Select(dt => dt.Description)</p>
+<br />
+<p>Assigned Developer: @project.ApplicationUers.Select(au=>au.UserName)</p>
+}
+

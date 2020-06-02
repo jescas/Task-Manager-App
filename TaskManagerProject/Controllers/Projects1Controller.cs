@@ -13,6 +13,7 @@ namespace TaskManagerProject.Controllers
     public class Projects1Controller : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        public ProjectHelper ph = new ProjectHelper();
 
         // GET: Projects1
         public ActionResult Index()
@@ -122,6 +123,13 @@ namespace TaskManagerProject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public ActionResult SeeAllProjects()
+        {
+            var allProjects = ph.GetAllProjects();
+            return View(allProjects);
         }
     }
 }
