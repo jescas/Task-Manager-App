@@ -11,8 +11,6 @@ namespace TaskManagerProject.Models
     [Authorize(Roles = "ProjectManager")]
     public class ProjectHelper
     {
-        public virtual Project Project { get; set; }
-
         static ApplicationDbContext db = new ApplicationDbContext();
 
         static UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>
@@ -28,9 +26,9 @@ namespace TaskManagerProject.Models
             return result;
         }
 
-        public ICollection<int?> ProjectsForUser(int userId)
+        public ICollection<string> ProjectsForUser(int userId)
         {
-            var result = db.Projects.Where(up => up.AppUserId == userId).Select(p => p.ProjectId);
+            var result = db.Projects.Where(up => up.Id == userId).Select(p => p.Name);
             return result.ToList();
         }
 
