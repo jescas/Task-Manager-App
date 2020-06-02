@@ -7,9 +7,8 @@ namespace TaskManagerProject.Models
 {
     public class Project
     {
-        public Project(string name)
+        public Project()
         {
-            this.Name = name;
             HashSet<ApplicationUser> applicationUsers = new HashSet<ApplicationUser>();
             HashSet<DevTask> devTasks = new HashSet<DevTask>();
             HashSet<Notification> notifactions = new HashSet<Notification>();
