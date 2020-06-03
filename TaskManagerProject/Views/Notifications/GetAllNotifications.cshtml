@@ -1,0 +1,15 @@
+﻿@model ICollection<TaskManagerProject.Models.Notification>
+
+@{
+    ViewBag.Title = "GetAllNotifications";
+}
+
+<h2>GetAllNotifications</h2>
+
+<div>unopened: @Model.Where(n => n.isOpened == false).Count();</div>
+
+@foreach (var notification in Model)
+{
+    @notification.Title
+    @notification.Description
+}

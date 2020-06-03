@@ -12,7 +12,7 @@ namespace TaskManagerProject.Controllers
 {
     public class NotificationsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        public ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Notifications
         public ActionResult Index()
@@ -136,5 +136,14 @@ namespace TaskManagerProject.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult GetAllNotifications()
+        {
+            return View(db.Notifications.ToList());
+        }
+        //public ActionResult UnopenedNotifications()
+        //{
+        //    var result = db.Notifications.Where(n => n.isOpened == false).Count(); //returns an int
+        //    return View(result);
+        //}
     }
 }

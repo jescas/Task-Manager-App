@@ -33,6 +33,7 @@ namespace TaskManagerProject.Models
     {
         public DbSet<Project> Projects { get; set; }
         public DbSet<DevTask> DevTasks { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Note> Notes { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public ApplicationDbContext()
