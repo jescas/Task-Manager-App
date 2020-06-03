@@ -79,10 +79,43 @@ namespace TaskManagerProject.Models
             db.DevTasks.Remove(task);
         }
 
-        //AddComment(string comment,int taskId) 
-        //UpdateCompletionPercent(int newValue, int taskId)
-        //SendDeadlineAlert() 
-        //SendBugNotification
+        public static void AddComment(string comment,DevTask task)
+        {
+            task.Comments.Add(comment);
+        }
+        public static void UpdateCompletionPercent(int newValue, DevTask task)
+        {
+            if (newValue <= 100)
+            {
+                task.PercentCompleted = newValue;
+                if (newValue == 100)
+                {
+                    task.IsComplete = true;
+                }
+                else
+                {
+                    task.IsComplete = false;
+                }
+            }
+            else
+            {
+                //error
+            }
+        }
+        public static void SendNotification(string title, string description, ApplicationUser user, Project project, DevTask task)
+        {
+            Notification notification = new Notification
+            {
+                Title = title,
+                Description = description,
+                ApplicationUserId = user.Id,
+                ProjectId = project.Id,
+                DevTaskId = task.Id,
+            };
+            user.Notifications.Add(notification);
+        }
+        //SendDeadlineAlert(Project) 
+        //SendBugNotification(Task)
 
     }
 }
