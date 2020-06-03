@@ -138,12 +138,8 @@ namespace TaskManagerProject.Controllers
         }
         public ActionResult GetAllNotifications()
         {
-            return View(db.Notifications.ToList());
+            var result = db.Notifications.ToList();
+            return View();
         }
-        //public ActionResult UnopenedNotifications()
-        //{
-        //    var result = db.Notifications.Where(n => n.isOpened == false).Count(); //returns an int
-        //    return View(result);
-        //}
     }
 }
