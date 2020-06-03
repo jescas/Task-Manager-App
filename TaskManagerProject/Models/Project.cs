@@ -21,7 +21,7 @@ namespace TaskManagerProject.Models
         public DateTime StartDate { get; set; }
         //public DateTime Deadline { get; set; } add in Later migration
         // enum Priority add in later Migration
-        public int CompletionPercentage = 0;
+        public double CompletionPercentage = 0;
         public bool IsCompleted = false;
         public double Budget { get; set; }
         public double TotalCost { get; set; }

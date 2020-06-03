@@ -85,7 +85,7 @@ namespace TaskManagerProject.Models
         {
             task.Comments.Add(comment);
         }
-        public static void UpdateCompletionPercent(int newValue, DevTask task)
+        public static void UpdateCompletionPercent(double newValue, DevTask task)
         {
             if (newValue <= 100)
             {
