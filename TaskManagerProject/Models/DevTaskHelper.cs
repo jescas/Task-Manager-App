@@ -4,9 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace TaskManagerProject.Models
 {
+    [Authorize(Roles = "ProjectManager")]
     public class DevTaskHelper
     {
         public virtual Project Project { get; set; }
