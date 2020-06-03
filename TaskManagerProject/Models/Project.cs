@@ -21,13 +21,26 @@ namespace TaskManagerProject.Models
         public DateTime StartDate { get; set; }
         //public DateTime Deadline { get; set; } add in Later migration
         // enum Priority add in later Migration
-        public double CompletionPercentage = 0;
+        public double CompletionPercentage { get; set; }
         public bool IsCompleted = false;
         public double Budget { get; set; }
         public double TotalCost { get; set; }
-        public virtual ICollection<ApplicationUser> ApplicationUers { get; set; } //Many to Many
-        public virtual ICollection<DevTask> DevTasks { get; set; } //One to Many
+        public virtual ApplicationUser ApplicationUser { get; set; } //one to Many
+        public virtual ICollection<DevTask> DevTasks { get; set; } //Many to Many
         public virtual ICollection<Notification> Notifications { get; set; } //One to Many
-        public virtual ICollection<Note> Notes { get; set; }
+
+        public Project(int id, string name, string description, double budget, double totalCost, ApplicationUser developer)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Description = description;
+            this.StartDate = DateTime.Now;
+            this.CompletionPercentage = 0;
+            this.Budget = budget;
+            this.TotalCost = totalCost;
+            this.ApplicationUser = developer;
+            
+
+        }
     }
 }

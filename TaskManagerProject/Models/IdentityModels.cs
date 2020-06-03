@@ -17,8 +17,8 @@ namespace TaskManagerProject.Models
             HashSet<Notification> notifications = new HashSet<Notification>();
         }
         public double Salary { get; set; }
-        public virtual ICollection<Project> Projects { get; set; } //Many to Many
-        public virtual ICollection<DevTask> DevTasks { get; set; } //Many to Many
+        public virtual ICollection<Project> Projects { get; set; } //one to Many
+        public virtual ICollection<DevTask> DevTasks { get; set; } //one to Many
         public virtual ICollection<Note> Notes { get; set; } //One to Many
         public virtual ICollection<Notification> Notifications { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
