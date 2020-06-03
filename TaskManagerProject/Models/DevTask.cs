@@ -19,7 +19,7 @@ namespace TaskManagerProject.Models
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
         //public DateTime Deadline { get; set; } add in later migration
-        public int PercentCompleted { get; set; }
+        public double PercentCompleted { get; set; }
         public bool IsComplete { get; set; }
         //enum Priority add in later migration
         public virtual ICollection<string> Comments { get; set; }
