@@ -25,11 +25,10 @@ namespace TaskManagerProject.Models
         public bool IsCompleted = false;
         public double Budget { get; set; }
         public double TotalCost { get; set; }
-        public virtual ApplicationUser ApplicationUser { get; set; } //one to Many
         public virtual ICollection<DevTask> DevTasks { get; set; } //Many to Many
         public virtual ICollection<Notification> Notifications { get; set; } //One to Many
 
-        public Project(int id, string name, string description, double budget, double totalCost, ApplicationUser developer)
+        public Project(int id, string name, string description, double budget, double totalCost)
         {
             this.Id = id;
             this.Name = name;
@@ -38,9 +37,6 @@ namespace TaskManagerProject.Models
             this.CompletionPercentage = 0;
             this.Budget = budget;
             this.TotalCost = totalCost;
-            this.ApplicationUser = developer;
-            
-
         }
     }
 }

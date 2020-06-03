@@ -18,7 +18,7 @@ namespace TaskManagerProject.Controllers
 
         public Projects1Controller()
         {
-            Project firstProject = new Project(1, "firstProject", "Our first test project", 100.00, 95.00, );
+            Project firstProject = new Project(1, "firstProject", "Our first test project", 100.00, 95.00);
 
             projects.Add(firstProject);
             
