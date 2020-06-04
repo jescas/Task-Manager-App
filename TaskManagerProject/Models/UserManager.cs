@@ -15,17 +15,17 @@ namespace TaskManagerProject.Models
 
         static RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
 
-
-        public static void CreateUser()
+        public static void CreateUser(string username)
         {
-
+            userManager.Create(new ApplicationUser { UserName = username });
+            db.SaveChanges();
         }
-
         public static void createRole(string roleName)
         {
             if (!roleManager.RoleExists(roleName))
             {
                 roleManager.Create(new IdentityRole { Name = roleName });
+                db.SaveChanges();
             }
         }
 

@@ -12,14 +12,6 @@ namespace TaskManagerProject.Models
     public class ProjectHelper
     {
         static ApplicationDbContext db = new ApplicationDbContext();
-
-        static UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>
-            (new UserStore<ApplicationUser>(db));
-
-        static RoleManager<IdentityRole> projectManager = new RoleManager<IdentityRole>
-            (new RoleStore<IdentityRole>(db));
-
-        
         public ICollection<Project> GetAllProjects()
         {
             var result = db.Projects.ToList();
@@ -38,6 +30,7 @@ namespace TaskManagerProject.Models
             if (!db.Projects.Contains(projectName))
             {
                 var newProject = db.Projects.Add(projectName);
+                db.SaveChanges();
             }
             else
             {

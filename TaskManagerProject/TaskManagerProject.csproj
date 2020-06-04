@@ -324,6 +324,14 @@
     <Compile Include="Migrations\202006040107525_Initial 2.designer.cs">
       <DependentUpon>202006040107525_Initial 2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006040208500_UserRoleAdditions.cs" />
+    <Compile Include="Migrations\202006040208500_UserRoleAdditions.designer.cs">
+      <DependentUpon>202006040208500_UserRoleAdditions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006040216426_AssignUserToRoleAddition.cs" />
+    <Compile Include="Migrations\202006040216426_AssignUserToRoleAddition.designer.cs">
+      <DependentUpon>202006040216426_AssignUserToRoleAddition.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DevTaskHelper.cs" />
@@ -539,6 +547,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006040107525_Initial 2.resx">
       <DependentUpon>202006040107525_Initial 2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006040208500_UserRoleAdditions.resx">
+      <DependentUpon>202006040208500_UserRoleAdditions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006040216426_AssignUserToRoleAddition.resx">
+      <DependentUpon>202006040216426_AssignUserToRoleAddition.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
