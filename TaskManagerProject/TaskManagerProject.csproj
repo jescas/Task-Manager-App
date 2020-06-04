@@ -320,6 +320,10 @@
     <Compile Include="Migrations\202006040020034_Initial.designer.cs">
       <DependentUpon>202006040020034_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006040112045_Initial3.cs" />
+    <Compile Include="Migrations\202006040112045_Initial3.designer.cs">
+      <DependentUpon>202006040112045_Initial3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DevTaskHelper.cs" />
@@ -532,6 +536,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006040020034_Initial.resx">
       <DependentUpon>202006040020034_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006040112045_Initial3.resx">
+      <DependentUpon>202006040112045_Initial3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
