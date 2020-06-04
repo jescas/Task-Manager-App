@@ -22,7 +22,7 @@
                 UserManager.createRole("Developer");
             }
 
-            if (!context.Roles.Any())
+            if (!context.Users.Any())
             {
                 UserManager.CreateUser("projectmanager1@mail.com");
                 UserManager.CreateUser("developer1@mail.com");
@@ -32,7 +32,7 @@
             {
                 ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName == "projectmanager1@mail.com");
                 UserManager.AddUserToRole("5dce9cdc-8fd3-4118-9282-433e9b3489b5", "Project Manager");
-            }
+            }          
             
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
