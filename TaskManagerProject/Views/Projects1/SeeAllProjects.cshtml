@@ -11,6 +11,6 @@
 <br />
 <p>Assigned Task: @project.DevTasks.Select(dt => dt.Description)</p>
 <br />
-<p>Assigned Developer: @project.ApplicationUers.Select(au=>au.UserName)</p>
+<p>Assigned Developer: @project.DevTasks.Select(ta=>ta.ApplicationUsers.Select(un=>un.UserName))</p>
 }
 

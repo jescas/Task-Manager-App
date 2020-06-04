@@ -39,7 +39,7 @@ namespace TaskManagerProject.Controllers
         // GET: Notifications/Create
         public ActionResult Create()
         {
-            ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email");
+            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email");
             ViewBag.DevTaskId = new SelectList(db.DevTasks, "Id", "Name");
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name");
             return View();
@@ -59,7 +59,7 @@ namespace TaskManagerProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", notification.ApplicationUserId);
+            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", notification.ApplicationUserId);
             ViewBag.DevTaskId = new SelectList(db.DevTasks, "Id", "Name", notification.DevTaskId);
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", notification.ProjectId);
             return View(notification);
@@ -77,7 +77,7 @@ namespace TaskManagerProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", notification.ApplicationUserId);
+            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", notification.ApplicationUserId);
             ViewBag.DevTaskId = new SelectList(db.DevTasks, "Id", "Name", notification.DevTaskId);
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", notification.ProjectId);
             return View(notification);
@@ -96,7 +96,7 @@ namespace TaskManagerProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", notification.ApplicationUserId);
+            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", notification.ApplicationUserId);
             ViewBag.DevTaskId = new SelectList(db.DevTasks, "Id", "Name", notification.DevTaskId);
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", notification.ProjectId);
             return View(notification);
