@@ -7,9 +7,9 @@
     {
         public override void Up()
         {
-            DropForeignKey("dbo.Notes", "ProjectId", "dbo.Projects");
-            DropIndex("dbo.Notes", new[] { "ProjectId" });
-            DropColumn("dbo.Notes", "ProjectId");
+          //  DropForeignKey("dbo.Notes", "ProjectId", "dbo.Projects");
+           // DropIndex("dbo.Notes", new[] { "ProjectId" });
+           // DropColumn("dbo.Notes", "ProjectId");
         }
         
         public override void Down()
