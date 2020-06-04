@@ -25,11 +25,14 @@ namespace TaskManagerProject.Models
             return result.ToList();
         }
 
-        public void AddProject(Project projectName)
+        public void AddProject(int projectId)
         {
-            if (!db.Projects.Contains(projectName))
+            var project = db.Projects.FirstOrDefault(p=>p.Id == projectId);
+
+            if (project.Id != projectId)
             {
-                var newProject = db.Projects.Add(projectName);
+                db.Projects.Add(project);
+
                 db.SaveChanges();
             }
             else

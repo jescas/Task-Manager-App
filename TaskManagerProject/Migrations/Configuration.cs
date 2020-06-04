@@ -8,6 +8,8 @@
 
     internal sealed class Configuration : DbMigrationsConfiguration<TaskManagerProject.Models.ApplicationDbContext>
     {
+
+        public ProjectHelper ph = new ProjectHelper();
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
@@ -28,12 +30,39 @@
                 UserManager.CreateUser("developer1@mail.com");
             }
 
-            if (!UserManager.checkUserRole("5dce9cdc-8fd3-4118-9282-433e9b3489b5", "Project Manager"))
+            string PmId = context.Users.FirstOrDefault().Id;
+
+            if (!UserManager.checkUserRole(PmId, "Project Manager"))
             {
                 ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName == "projectmanager1@mail.com");
-                UserManager.AddUserToRole("5dce9cdc-8fd3-4118-9282-433e9b3489b5", "Project Manager");
-            }          
+
+                UserManager.AddUserToRole(PmId, "Project Manager");
+            }
+
+            string DeId = context.Users.FirstOrDefault().Id;
+
+            if (!UserManager.checkUserRole(DeId, "Developer"))
+            {
+                ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName == "developer1@mail.com");
+
+                UserManager.AddUserToRole(DeId, "Developer");
+            }
+
+            if (!context.Projects.Any())
+            {
+                Project firstProject = new Project(1, "firstProject", "Our first test project", 100.00, 95.00);
+                Project secondProject = new Project(2, "secondProject", "Our second test project", 500.00, 600.00);
+                Project thirdProject = new Project(3, "thirdProject", "Our third test project", 250.00, 275.00);
+                Project fourthProject = new Project(4, "fourthProject", "Our fourth test project", 150.00, 130.00);
+
+                context.Projects.Add(firstProject);
+                context.Projects.Add(secondProject);
+                context.Projects.Add(thirdProject);
+                context.Projects.Add(fourthProject);
+            }
+
             
+
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
         }
