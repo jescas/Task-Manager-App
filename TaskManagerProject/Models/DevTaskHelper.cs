@@ -41,7 +41,7 @@ namespace TaskManagerProject.Models
 
             return result.ToList();
         }
-        public static DevTask CreateDevTask(string name, string description, DateTime deadline)
+        public static DevTask CreateDevTask(string name, string description, DateTime deadline, Project project)
         {
             DevTask newTask = new DevTask
             {
@@ -49,8 +49,9 @@ namespace TaskManagerProject.Models
                 Description = description,
                 StartDate = DateTime.Now,
                 //Deadline = deadline,
+                ProjectId = project.Id,
                 PercentCompleted = 0,
-                //IsCompleted = false,
+                IsComplete = false,
             };
             return newTask;
         }
@@ -81,10 +82,11 @@ namespace TaskManagerProject.Models
             db.DevTasks.Remove(task);
         }
 
-        public static void AddComment(string comment,DevTask task)
+        public static void AddComment(string comment, DevTask task)
         {
             task.Comments.Add(comment);
         }
+        //AddNote
         public static void UpdateCompletionPercent(double newValue, DevTask task)
         {
             if (newValue <= 100)
@@ -104,20 +106,26 @@ namespace TaskManagerProject.Models
                 //error
             }
         }
-        public static void SendNotification(string title, string description, ApplicationUser user, Project project, DevTask task)
+        public static void SendNotification(string title, string description, ApplicationUser user, DevTask task)
         {
             Notification notification = new Notification
             {
                 Title = title,
                 Description = description,
                 ApplicationUserId = user.Id,
-                ProjectId = project.Id,
+                isOpened = false,
+                ProjectId = task.ProjectId,
                 DevTaskId = task.Id,
             };
             user.Notifications.Add(notification);
+            
         }
         //SendDeadlineAlert(Project) 
-        //SendBugNotification(Task)
+        public static void SendBugNotification(DevTask task, ApplicationUser recipient,string title, string description)
+        {
+            int projectId = task.Project.Id;
+
+        }
 
     }
 }
