@@ -29,19 +29,19 @@ namespace TaskManagerProject.Models
             return result;
         }
 
-        public static ICollection<int> TasksForUser(string userId)
+        public ICollection<int> TasksForUser(string userId)
         {
             var result = db.DevTasks.Where(up => up.ApplicationUsers.Select(d => d.Id).Contains(userId)).Select(t => t.Id);
 
             return result.ToList();
         }
-        public static ICollection<int> TasksForProject(int projectId)
+        public ICollection<int> TasksForProject(int projectId)
         {
             var result = db.DevTasks.Where(up => up.Project.Id == projectId).Select(t => t.Id);
 
             return result.ToList();
         }
-        public static DevTask CreateDevTask(string name, string description, DateTime deadline)
+        public DevTask CreateDevTask(string name, string description, DateTime deadline)
         {
             DevTask newTask = new DevTask
             {
@@ -54,7 +54,7 @@ namespace TaskManagerProject.Models
             };
             return newTask;
         }
-        public static void AssignDevTask(ApplicationUser user, DevTask task)
+        public void AssignDevTask(ApplicationUser user, DevTask task)
         {
             if(UserManager.checkUserRole(user.Id, "Developer"))
             {
@@ -62,7 +62,7 @@ namespace TaskManagerProject.Models
                 task.ApplicationUsers.Add(user);
             }
         }
-        public static void AssignDevsToTask(List<ApplicationUser> devs, DevTask task)
+        public void AssignDevsToTask(List<ApplicationUser> devs, DevTask task)
         {
             foreach(ApplicationUser dev in devs)
             {
@@ -72,20 +72,20 @@ namespace TaskManagerProject.Models
                 }
             }
         } 
-        public static void UpdateDevTask(DevTask task)
+        public void UpdateDevTask(DevTask task)
         {
             
         }
-        public static void  DeleteDevTask(DevTask task)
+        public void  DeleteDevTask(DevTask task)
         {
             db.DevTasks.Remove(task);
         }
 
-        public static void AddComment(string comment,DevTask task)
+        public void AddComment(string comment,DevTask task)
         {
             task.Comments.Add(comment);
         }
-        public static void UpdateCompletionPercent(double newValue, DevTask task)
+        public void UpdateCompletionPercent(double newValue, DevTask task)
         {
             if (newValue <= 100)
             {
@@ -104,7 +104,7 @@ namespace TaskManagerProject.Models
                 //error
             }
         }
-        public static void SendNotification(string title, string description, ApplicationUser user, Project project, DevTask task)
+        public void SendNotification(string title, string description, ApplicationUser user, Project project, DevTask task)
         {
             Notification notification = new Notification
             {

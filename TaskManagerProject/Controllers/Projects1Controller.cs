@@ -15,6 +15,7 @@ namespace TaskManagerProject.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         public ProjectHelper ph = new ProjectHelper();
         List<Project> projects = new List<Project>();
+        public DevTaskHelper dth = new DevTaskHelper(); 
 
         public Projects1Controller()
         {
@@ -135,6 +136,12 @@ namespace TaskManagerProject.Controllers
         {
             var allProjects = ph.GetAllProjects();
             return View(allProjects);
+        }
+
+        public ActionResult TasksNotFinishedAndPassedDeadline()
+        {
+            var incompleteTasks = db.Projects.Select(p => p.DevTasks);
+            return View(incompleteTasks.ToList()); ;
         }
     }
 }
