@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace TaskManagerProject.Models
 {
-    [Authorize(Roles = "ProjectManager")]
+    [Authorize(Roles = "Project Manager")]
     public class DevTaskHelper
     {
         public virtual Project Project { get; set; }

@@ -18,15 +18,15 @@ namespace TaskManagerProject.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
-        //public DateTime Deadline { get; set; } add in later migration
+        public DateTime Deadline { get; set; } 
         public double PercentCompleted { get; set; }
         public bool IsComplete { get; set; }
-        //enum Priority add in later migration
         public virtual ICollection<string> Comments { get; set; }
         public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; } // Many to Many
         public int ProjectId { get; set; }
         public Project Project { get; set; } //One to Many
         public virtual ICollection<Note> Notes { get; set; }
         public virtual ICollection<Notification> Notification { get; set; }
+        public virtual Priority Priority { get; set; }
     }
 }
