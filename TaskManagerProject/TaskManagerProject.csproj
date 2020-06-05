@@ -526,6 +526,7 @@
     <Content Include="Views\Notifications\Index.cshtml" />
     <Content Include="Views\Projects1\SeeAllProjects.cshtml" />
     <Content Include="Views\Notifications\GetAllNotifications.cshtml" />
+    <Content Include="Views\Projects1\TasksNotFinishedAndPassedDeadline.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
