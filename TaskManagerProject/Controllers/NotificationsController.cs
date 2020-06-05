@@ -136,9 +136,27 @@ namespace TaskManagerProject.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult GetAllNotifications()
+        public ActionResult ProjectManagerNotifications(string userId)
         {
-            var result = db.Notifications.ToList();
+            var result = db.Notifications.Where(n => n.ApplicationUserId == userId).Select(u => u.Title);
+            return View(result.ToList());
+        }
+        public static void Notify(string title, string description, Project project, DevTask task, ApplicationUser projectManager)
+        {
+            Notification notification = new Notification
+            {
+                Title = title,
+                Description = description,
+                isOpened = false,
+                ProjectId = project.Id,
+                DevTaskId = task.Id,
+                ApplicationUserId = projectManager.Id,
+            };
+            projectManager.Notifications.Add(notification);
+        }
+        public ActionResult ProjectTaskCompletedNotification()
+        {
+            //var result = db.Projects.Where(p=>p.IsCompleted).Select(p=>p.Id);
             return View();
         }
     }

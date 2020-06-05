@@ -5,6 +5,12 @@ using System.Linq;
 using System.Web;
 namespace TaskManagerProject.Models
 {
+    public enum Priority
+    {
+        Low = 3,
+        Medium = 2,
+        High = 1
+    }
     public class Project
     {
         public Project()
@@ -19,14 +25,14 @@ namespace TaskManagerProject.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
-        //public DateTime Deadline { get; set; } add in Later migration
-        // enum Priority add in later Migration
+        public DateTime Deadline { get; set; } 
         public double CompletionPercentage { get; set; }
         public bool IsCompleted = false;
         public double Budget { get; set; }
         public double TotalCost { get; set; }
         public virtual ICollection<DevTask> DevTasks { get; set; } //Many to Many
         public virtual ICollection<Notification> Notifications { get; set; } //One to Many
+        public virtual Priority Priority { get; set; }
 
         public Project(int id, string name, string description, double budget, double totalCost)
         {
