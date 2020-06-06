@@ -93,6 +93,42 @@ namespace TaskManagerProject.Controllers
             return View(devTask);
         }
 
+
+
+        // GET: DevTasks/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DevTask devTask = db.DevTasks.Find(id);
+            if (devTask == null)
+            {
+                return HttpNotFound();
+            }
+            return View(devTask);
+        }
+
+        // POST: DevTasks/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            DevTask devTask = db.DevTasks.Find(id);
+            db.DevTasks.Remove(devTask);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }        
         // GET: DevTasks/UpdateCompletionPercentage/5 
         public ActionResult UpdateCompletionPercentage(int? id)
         {
@@ -217,40 +253,5 @@ namespace TaskManagerProject.Controllers
                  return RedirectToAction("Index");
              }
              return View(devTask);*/
-
-        // GET: DevTasks/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            DevTask devTask = db.DevTasks.Find(id);
-            if (devTask == null)
-            {
-                return HttpNotFound();
-            }
-            return View(devTask);
-        }
-
-        // POST: DevTasks/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            DevTask devTask = db.DevTasks.Find(id);
-            db.DevTasks.Remove(devTask);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }
