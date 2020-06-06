@@ -1,7 +1,23 @@
-﻿@model 
+﻿@model IQueryable<TaskManagerProject.Models.DevTask>
 @{
     ViewBag.Title = "TasksNotFinishedAndPassedDeadline";
 }
 
-<h2>TasksNotFinishedAndPassedDeadline</h2>
+<h2>Tasks Not Finished And Passed Deadline</h2>
+
+
+@foreach(var task in Model)
+{
+    if(!task.IsComplete || DateTime.Now > task.Deadline)
+    {
+        <p>Project Id: @task.ProjectId</p>
+        <p>Task Name: @task.Name</p>
+        <p>Task Description: @task.Description</p>
+        <p>Percent completed: @task.PercentCompleted</p>
+        <p>Deadline Date: @task.Deadline</p>
+        <br />
+        <br />
+    }
+
+}
 

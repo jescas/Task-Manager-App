@@ -28,5 +28,17 @@ namespace TaskManagerProject.Models
         public virtual ICollection<Note> Notes { get; set; }
         public virtual ICollection<Notification> Notification { get; set; }
         public virtual Priority Priority { get; set; }
+
+        public DevTask(int id, string name, string description, DateTime deadline, int projectid)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Description = description;
+            StartDate = DateTime.Now;
+            this.Deadline = deadline;
+            this.PercentCompleted = 0;
+            IsComplete = false;
+            this.ProjectId = projectid;
+        }
     }
 }

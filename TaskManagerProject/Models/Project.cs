@@ -25,7 +25,7 @@ namespace TaskManagerProject.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime Deadline { get; set; } 
+        public DateTime? Deadline { get; set; } 
         public double CompletionPercentage { get; set; }
         public bool IsCompleted = false;
         public double Budget { get; set; }

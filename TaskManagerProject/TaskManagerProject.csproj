@@ -340,6 +340,10 @@
     <Compile Include="Migrations\202006051643426_AddEnumAndDeadlineProps.designer.cs">
       <DependentUpon>202006051643426_AddEnumAndDeadlineProps.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006062205438_madeprojectdeadlinenullable.cs" />
+    <Compile Include="Migrations\202006062205438_madeprojectdeadlinenullable.designer.cs">
+      <DependentUpon>202006062205438_madeprojectdeadlinenullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DevTaskHelper.cs" />
@@ -530,6 +534,7 @@
     <Content Include="Views\Notifications\Index.cshtml" />
     <Content Include="Views\Projects1\SeeAllProjects.cshtml" />
     <Content Include="Views\Notifications\ProjectManagerNotifications.cshtml" />
+    <Content Include="Views\Projects1\TasksNotFinishedAndPassedDeadline.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -567,6 +572,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006051643426_AddEnumAndDeadlineProps.resx">
       <DependentUpon>202006051643426_AddEnumAndDeadlineProps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006062205438_madeprojectdeadlinenullable.resx">
+      <DependentUpon>202006062205438_madeprojectdeadlinenullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
