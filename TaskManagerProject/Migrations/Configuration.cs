@@ -5,10 +5,10 @@
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-
+ 
     internal sealed class Configuration : DbMigrationsConfiguration<TaskManagerProject.Models.ApplicationDbContext>
     {
-
+        public DevTaskHelper dth = new DevTaskHelper();
         public ProjectHelper ph = new ProjectHelper();
         public Configuration()
         {
@@ -61,8 +61,49 @@
                 context.Projects.Add(fourthProject);
             }
 
-            
+            if (!context.DevTasks.Any())
+            {
+                DevTask taskOne = dth.CreateDevTask("TaskOneInFirstProject", "First class of first project", DateTime.Parse("02/02/2024"), context.Projects.FirstOrDefault());
+                DevTask taskTwo = dth.CreateDevTask("TaskTwoInFirstProject", "Second class of first project", DateTime.Parse("02/02/2015"), context.Projects.FirstOrDefault());
+                DevTask taskThree = dth.CreateDevTask("TaskThreeInFirstProject", "Third class of first project", DateTime.Parse("02/02/2016"), context.Projects.FirstOrDefault());
+                DevTask taskFour = dth.CreateDevTask("TaskFourinFirstProject", "Fourth class of first project", DateTime.Parse("02/02/2027"), context.Projects.FirstOrDefault());
 
+                context.DevTasks.Add(taskOne);
+                context.DevTasks.Add(taskTwo);
+                context.DevTasks.Add(taskThree);
+                context.DevTasks.Add(taskFour);
+            }
+            DevTask firstTask = context.DevTasks.FirstOrDefault();
+            if (!context.Projects.ToList()[1].DevTasks.Any())
+            {
+
+                DevTask taskOne = dth.CreateDevTask("TaskOneInSecondProject", "First class of second project", DateTime.Parse("02/02/2024"), context.Projects.ToList()[1]);
+                DevTask taskTwo = dth.CreateDevTask("TaskTwoInSecondProject", "Second class of second project", DateTime.Parse("02/02/2015"), context.Projects.ToList()[1]);
+                DevTask taskThree = dth.CreateDevTask("TaskOneInThirdProject", "First class of third project", DateTime.Parse("02/02/2024"), context.Projects.ToList()[2]);
+                DevTask taskFour = dth.CreateDevTask("TaskTwoInThirdProject", "Second class of third project", DateTime.Parse("02/02/2015"), context.Projects.ToList()[2]);
+                DevTask taskFive = dth.CreateDevTask("TaskOneInFourthProject", "First class of fourth project", DateTime.Parse("02/02/2024"), context.Projects.ToList()[3]);
+                DevTask taskSix = dth.CreateDevTask("TaskTwoInFourthProject", "Second class of fourth project", DateTime.Parse("02/02/2015"), context.Projects.ToList()[3]);
+
+                context.DevTasks.Add(taskOne);
+                context.DevTasks.Add(taskTwo);
+                context.DevTasks.Add(taskThree);
+                context.DevTasks.Add(taskFour);
+                context.DevTasks.Add(taskFive);
+                context.DevTasks.Add(taskSix);
+            }
+
+            if (!context.Notifications.Any())
+            {
+                //Notification notificationOne = dth.SendNotification("Notification1", "first in user 1 and task 1", context.Users.First(), firstTask);
+
+            }
+            //Notes
+            
+            if (firstTask.ApplicationUsers.Count() <= 0)
+            {
+                DevTaskHelper.AssignDevsToTask(context.Users.ToList(), firstTask);
+            };
+            
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
         }
