@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Web;
 using System.Web.Mvc;
 
@@ -41,17 +43,10 @@ namespace TaskManagerProject.Models
 
             return result.ToList();
         }
-        public DevTask CreateDevTask(string name, string description, DateTime deadline)
+        public DevTask CreateDevTask(int id, string name, string description, DateTime deadline, int projectId)
         {
-            DevTask newTask = new DevTask
-            {
-                Name = name,
-                Description = description,
-                StartDate = DateTime.Now,
-                //Deadline = deadline,
-                PercentCompleted = 0,
-                //IsCompleted = false,
-            };
+            DevTask newTask = new DevTask(id, name, description, deadline, projectId);
+            
             return newTask;
         }
         public void AssignDevTask(ApplicationUser user, DevTask task)

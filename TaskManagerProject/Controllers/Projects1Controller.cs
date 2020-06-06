@@ -140,8 +140,8 @@ namespace TaskManagerProject.Controllers
 
         public ActionResult TasksNotFinishedAndPassedDeadline()
         {
-            var incompleteTasks = db.Projects.Select(p => p.DevTasks);
-            return View(incompleteTasks.ToList());
+            var incompleteTasks = db.Projects.SelectMany(p => p.DevTasks);
+            return View(incompleteTasks);
         }
     }
 }
