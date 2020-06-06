@@ -511,6 +511,7 @@
     <Content Include="Views\DevTasks\Details.cshtml" />
     <Content Include="Views\DevTasks\Edit.cshtml" />
     <Content Include="Views\DevTasks\Index.cshtml" />
+    <Content Include="Views\DevTasks\TasksAssignedToUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

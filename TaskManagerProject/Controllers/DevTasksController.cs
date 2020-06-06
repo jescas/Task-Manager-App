@@ -93,7 +93,7 @@ namespace TaskManagerProject.Controllers
             return View(devTask);
         }
 
-        /* // GET: DevTasks/Edit/5 Partial??
+        // GET: DevTasks/UpdateCompletionPercentage/5 
         public ActionResult UpdateCompletionPercentage(int? id)
         {
             if (id == null)
@@ -106,7 +106,7 @@ namespace TaskManagerProject.Controllers
                 return HttpNotFound();
             }
             return View(devTask); 
-        }*/
+        }
 
         // POST: DevTasks/UpdateCompletionPercentage/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -141,19 +141,83 @@ namespace TaskManagerProject.Controllers
         // POST: DevTasks/AssignDevs/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-      /*  [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AssignDevs([Bind(Include = "Id,Name,Description,StartDate,PercentCompleted,IsComplete,ProjectId")] DevTask devTask)
-        {
-            if (ModelState.IsValid)
-            {
-                List<ApplicationUser> devs = ;
-                DevTaskHelper.AssignDevsToTask(devs, devTask);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(devTask);
-        }*/
+        /*  [HttpPost]
+          [ValidateAntiForgeryToken]
+          public ActionResult AssignDevs([Bind(Include = "Id,Name,Description,StartDate,PercentCompleted,IsComplete,ProjectId")] DevTask devTask)
+          {
+              if (ModelState.IsValid)
+              {
+                  List<ApplicationUser> devs = ;
+                  DevTaskHelper.AssignDevsToTask(devs, devTask);
+                  db.SaveChanges();
+                  return RedirectToAction("Index");
+              }
+              return View(devTask);
+          }*/
+        // GET: DevTasks/Edit/5
+        /* public ActionResult SetPriority(int? id)
+         {
+             if (id == null)
+             {
+                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+             }
+             DevTask devTask = db.DevTasks.Find(id);
+             if (devTask == null)
+             {
+                 return HttpNotFound();
+             }
+             ViewBag.ProjectId = new SelectList(db.DevTasks, "Id", "Name", devTask.Priority);
+             return View(devTask);
+         }
+
+         // POST: DevTasks/Edit/5
+         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+         [HttpPost]
+         [ValidateAntiForgeryToken]
+         public ActionResult SetPriority([Bind(Include = "Id,Name,Description,StartDate,PercentCompleted,IsComplete,ProjectId")] DevTask devTask)
+         {
+             if (ModelState.IsValid)
+             {
+                 db.Entry(devTask).State = EntityState.Modified;
+                 db.SaveChanges();
+                 return RedirectToAction("Index");
+             }
+             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", devTask.ProjectId);
+             return View(devTask);
+         }
+                 // GET: DevTasks/Edit/5
+        /* public ActionResult SetPriority(int? id)
+         {
+             if (id == null)
+             {
+                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+             }
+             DevTask devTask = db.DevTasks.Find(id);
+             if (devTask == null)
+             {
+                 return HttpNotFound();
+             }
+             ViewBag.ProjectId = new SelectList(db.DevTasks, "Id", "Name", devTask.Priority);
+             return View(devTask);
+         }
+
+         // POST: DevTasks/Edit/5
+         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+         [HttpPost]
+         [ValidateAntiForgeryToken]
+         public ActionResult ReportBug(int taskId, string description)
+         {
+             if (ModelState.IsValid)
+             {
+                 DevTask devTask = db.DevTasks.Find(taskId); 
+                 dth.SendBugReport(devTask, description);
+                 db.SaveChanges();
+                 return RedirectToAction("Index");
+             }
+             return View(devTask);*/
+
         // GET: DevTasks/Delete/5
         public ActionResult Delete(int? id)
         {
