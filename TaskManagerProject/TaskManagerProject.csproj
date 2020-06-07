@@ -345,6 +345,10 @@
     <Compile Include="Migrations\202006062205438_madeprojectdeadlinenullable.designer.cs">
       <DependentUpon>202006062205438_madeprojectdeadlinenullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006071002118_RemakeNullable.cs" />
+    <Compile Include="Migrations\202006071002118_RemakeNullable.designer.cs">
+      <DependentUpon>202006071002118_RemakeNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DevTaskHelper.cs" />
@@ -542,6 +546,9 @@
     <Content Include="Views\DevTasks1\Edit.cshtml" />
     <Content Include="Views\DevTasks1\Index.cshtml" />
     <Content Include="Views\DevTasks1\TasksAssignedToUser.cshtml" />
+    <Content Include="Views\DevTasks1\UpdateCompletion.cshtml" />
+    <Content Include="Views\DevTasks1\Worked.cshtml" />
+    <Content Include="Views\DevTasks1\AddNewComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -582,6 +589,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006062205438_madeprojectdeadlinenullable.resx">
       <DependentUpon>202006062205438_madeprojectdeadlinenullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006071002118_RemakeNullable.resx">
+      <DependentUpon>202006071002118_RemakeNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

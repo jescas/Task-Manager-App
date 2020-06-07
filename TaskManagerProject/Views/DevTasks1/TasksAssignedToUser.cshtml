@@ -27,13 +27,14 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.PercentCompleted)
+                        @{Html.RenderAction("UpdateCompletion", new { id = item.Id, finish = false });}
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.IsComplete)
-                    </td>
-
-                    <td>
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) 
+                        @if (!item.IsComplete)
+                        {
+                            <div> @{Html.RenderAction("UpdateCompletion", new { id = item.Id, finish = true });}</div>
+                        }
                     </td>
                 </tr>
             }
