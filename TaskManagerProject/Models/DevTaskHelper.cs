@@ -43,7 +43,12 @@ namespace TaskManagerProject.Models
 
             return result.ToList();
         }
-        public DevTask CreateDevTask(int id, string name, string description, DateTime deadline, int projectId)        {            DevTask newTask = new DevTask(id, name, description, deadline, projectId);            return newTask;        }
+        public DevTask CreateDevTask( int id, string name, string description, DateTime deadline, int projectId)
+        {
+            DevTask newTask = new DevTask(id, name, description, deadline, projectId);
+
+            return newTask;
+        }
 
         public static void AssignDevTask(ApplicationUser user, DevTask task)
         {

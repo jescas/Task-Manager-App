@@ -18,7 +18,7 @@ namespace TaskManagerProject.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime Deadline { get; set; } 
+        public DateTime? Deadline { get; set; } 
         public double PercentCompleted { get; set; }
         public bool IsComplete { get; set; }
         public virtual ICollection<string> Comments { get; set; }

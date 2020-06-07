@@ -63,10 +63,10 @@
 
             if (!context.DevTasks.Any())
             {
-                DevTask taskOne = dth.CreateDevTask("TaskOneInFirstProject", "First class of first project", DateTime.Parse("02/02/2024"), context.Projects.FirstOrDefault());
-                DevTask taskTwo = dth.CreateDevTask("TaskTwoInFirstProject", "Second class of first project", DateTime.Parse("02/02/2015"), context.Projects.FirstOrDefault());
-                DevTask taskThree = dth.CreateDevTask("TaskThreeInFirstProject", "Third class of first project", DateTime.Parse("02/02/2016"), context.Projects.FirstOrDefault());
-                DevTask taskFour = dth.CreateDevTask("TaskFourinFirstProject", "Fourth class of first project", DateTime.Parse("02/02/2027"), context.Projects.FirstOrDefault());
+                DevTask taskOne = dth.CreateDevTask(1, "TaskOneInFirstProject", "First class of first project", DateTime.Parse("02/02/2024"), context.Projects.FirstOrDefault().Id);
+                DevTask taskTwo = dth.CreateDevTask(2, "TaskTwoInFirstProject", "Second class of first project", DateTime.Parse("02/02/2015"), context.Projects.FirstOrDefault().Id);
+                DevTask taskThree = dth.CreateDevTask(3,"TaskThreeInFirstProject", "Third class of first project", DateTime.Parse("02/02/2016"), context.Projects.FirstOrDefault().Id);
+                DevTask taskFour = dth.CreateDevTask(4,"TaskFourinFirstProject", "Fourth class of first project", DateTime.Parse("02/02/2027"), context.Projects.FirstOrDefault().Id);
 
                 context.DevTasks.Add(taskOne);
                 context.DevTasks.Add(taskTwo);
@@ -77,12 +77,12 @@
             if (!context.Projects.ToList()[1].DevTasks.Any())
             {
 
-                DevTask taskOne = dth.CreateDevTask("TaskOneInSecondProject", "First class of second project", DateTime.Parse("02/02/2024"), context.Projects.ToList()[1]);
-                DevTask taskTwo = dth.CreateDevTask("TaskTwoInSecondProject", "Second class of second project", DateTime.Parse("02/02/2015"), context.Projects.ToList()[1]);
-                DevTask taskThree = dth.CreateDevTask("TaskOneInThirdProject", "First class of third project", DateTime.Parse("02/02/2024"), context.Projects.ToList()[2]);
-                DevTask taskFour = dth.CreateDevTask("TaskTwoInThirdProject", "Second class of third project", DateTime.Parse("02/02/2015"), context.Projects.ToList()[2]);
-                DevTask taskFive = dth.CreateDevTask("TaskOneInFourthProject", "First class of fourth project", DateTime.Parse("02/02/2024"), context.Projects.ToList()[3]);
-                DevTask taskSix = dth.CreateDevTask("TaskTwoInFourthProject", "Second class of fourth project", DateTime.Parse("02/02/2015"), context.Projects.ToList()[3]);
+                DevTask taskOne = dth.CreateDevTask(5,"TaskOneInSecondProject", "First class of second project", DateTime.Parse("02/02/2024"), context.Projects.ToList()[1].Id);
+                DevTask taskTwo = dth.CreateDevTask(6,"TaskTwoInSecondProject", "Second class of second project", DateTime.Parse("02/02/2015"), context.Projects.ToList()[1].Id);
+                DevTask taskThree = dth.CreateDevTask(7,"TaskOneInThirdProject", "First class of third project", DateTime.Parse("02/02/2024"), context.Projects.ToList()[2].Id);
+                DevTask taskFour = dth.CreateDevTask(8,"TaskTwoInThirdProject", "Second class of third project", DateTime.Parse("02/02/2015"), context.Projects.ToList()[2].Id);
+                DevTask taskFive = dth.CreateDevTask(9,"TaskOneInFourthProject", "First class of fourth project", DateTime.Parse("02/02/2024"), context.Projects.ToList()[3].Id);
+                DevTask taskSix = dth.CreateDevTask(10,"TaskTwoInFourthProject", "Second class of fourth project", DateTime.Parse("02/02/2015"), context.Projects.ToList()[3].Id);
 
                 context.DevTasks.Add(taskOne);
                 context.DevTasks.Add(taskTwo);
