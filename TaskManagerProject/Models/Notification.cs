@@ -12,9 +12,9 @@ namespace TaskManagerProject.Models
         public bool isOpened { get; set; }
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
-        public int? DevTaskId { get; set; }
+        public int DevTaskId { get; set; }
         public virtual DevTask DevTask { get; set; }
-        public int? ProjectId { get; set; }
+        public int ProjectId { get; set; }
         public virtual Project Project { get; set; }
     }
 }

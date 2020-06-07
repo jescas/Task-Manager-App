@@ -79,9 +79,8 @@ namespace TaskManagerProject.Models
             db.SaveChanges();
         }
 
-        public static void AddComment(string comment, int id)
+        public static void AddComment(string comment, DevTask task)
         {
-            DevTask task = db.DevTasks.Find(id);
             task.Comments.Add(comment);
             db.SaveChanges();
         }
@@ -100,7 +99,7 @@ namespace TaskManagerProject.Models
                 {
                     task.IsComplete = false;
                 }
-                //db.SaveChanges();
+                db.SaveChanges();
             }
             else
             {
@@ -115,11 +114,12 @@ namespace TaskManagerProject.Models
                 Description = description,
                 ApplicationUserId = user.Id,
                 isOpened = false,
-                ProjectId = task.ProjectId,
+                //ProjectId = task.ProjectId,
                 DevTaskId = task.Id,
             };
             user.Notifications.Add(notification);
-            task.Notification.Add(notification);
+            
+            db.SaveChanges();
         }
         public static void SendNote(DevTask task, string title)
         {
@@ -129,6 +129,7 @@ namespace TaskManagerProject.Models
                 Title = title + " in " + task.Name,
             };
             task.Notes.Add(note);
+            db.SaveChanges();
         }
         //SendDeadlineAlert(Project) 
         public static void SendBugReport(DevTask task, string description)
@@ -136,7 +137,7 @@ namespace TaskManagerProject.Models
             string title = "Bug Report: " + task.Name; 
             int projectId = task.Project.Id;
             SendNote(task, description);
-            List<ApplicationUser> recipients = db.Users.Where(u => userManager.IsInRole(u.Id, "ProjectManager")).ToList();
+            List<ApplicationUser> recipients = db.Users.Where(u => UserManager.checkUserRole(u.Id, "ProjectManager")).ToList();
             foreach(ApplicationUser r in recipients)
             {
                 SendNotification(title, description, r, task);
@@ -145,11 +146,9 @@ namespace TaskManagerProject.Models
         public static void SendCompletionNotifications(DevTask task)
         {
             string title = "Task Completion Report: " + task.Name;
-            int projectId = task.ProjectId;
-            Project project = db.Projects.Find(projectId);
-
-            string description = task.Name + " in " + project.Name + " has been completed.";
-            List<ApplicationUser> recipients = db.Users.AsEnumerable().Where(u => UserManager.checkUserRole(u.Id, "Project Manager")).ToList();
+            int projectId = task.Project.Id;
+            string description = task.Name + " in " + task.Project.Name + " has been completed.";
+            List<ApplicationUser> recipients = db.Users.Where(u => UserManager.checkUserRole(u.Id, "ProjectManager")).ToList();
             foreach (ApplicationUser r in recipients)
             {
                 SendNotification(title, description, r, task);
