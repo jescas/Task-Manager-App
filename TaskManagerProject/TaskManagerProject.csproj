@@ -345,6 +345,10 @@
     <Compile Include="Migrations\202006062205438_madeprojectdeadlinenullable.designer.cs">
       <DependentUpon>202006062205438_madeprojectdeadlinenullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006070120327_DevTaskDeadlineUpdate.cs" />
+    <Compile Include="Migrations\202006070120327_DevTaskDeadlineUpdate.designer.cs">
+      <DependentUpon>202006070120327_DevTaskDeadlineUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DevTaskHelper.cs" />
@@ -582,6 +586,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006062205438_madeprojectdeadlinenullable.resx">
       <DependentUpon>202006062205438_madeprojectdeadlinenullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006070120327_DevTaskDeadlineUpdate.resx">
+      <DependentUpon>202006070120327_DevTaskDeadlineUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
