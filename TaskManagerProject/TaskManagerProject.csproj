@@ -345,15 +345,9 @@
     <Compile Include="Migrations\202006062205438_madeprojectdeadlinenullable.designer.cs">
       <DependentUpon>202006062205438_madeprojectdeadlinenullable.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Migrations\202006070120327_DevTaskDeadlineUpdate.cs" />
-    <Compile Include="Migrations\202006070120327_DevTaskDeadlineUpdate.designer.cs">
-      <DependentUpon>202006070120327_DevTaskDeadlineUpdate.cs</DependentUpon>
-=======
     <Compile Include="Migrations\202006071002118_RemakeNullable.cs" />
     <Compile Include="Migrations\202006071002118_RemakeNullable.designer.cs">
       <DependentUpon>202006071002118_RemakeNullable.cs</DependentUpon>
->>>>>>> ControllersAndViewsAlyssa
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -596,13 +590,8 @@
     <EmbeddedResource Include="Migrations\202006062205438_madeprojectdeadlinenullable.resx">
       <DependentUpon>202006062205438_madeprojectdeadlinenullable.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
-    <EmbeddedResource Include="Migrations\202006070120327_DevTaskDeadlineUpdate.resx">
-      <DependentUpon>202006070120327_DevTaskDeadlineUpdate.cs</DependentUpon>
-=======
     <EmbeddedResource Include="Migrations\202006071002118_RemakeNullable.resx">
       <DependentUpon>202006071002118_RemakeNullable.cs</DependentUpon>
->>>>>>> ControllersAndViewsAlyssa
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
