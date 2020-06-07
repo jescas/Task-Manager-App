@@ -99,10 +99,10 @@
             }
             //Notes
             
-            if (firstTask.ApplicationUsers.Count() <= 0)
-            {
-                DevTaskHelper.AssignDevsToTask(context.Users.ToList(), firstTask);
-            };
+            //if (firstTask.ApplicationUsers.Count() <= 0)
+            //{
+            //    DevTaskHelper.AssignDevsToTask(context.Users.ToList(), firstTask);
+            //};
             
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
