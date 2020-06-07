@@ -309,6 +309,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DevTasks1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NotificationsController.cs" />
@@ -343,10 +344,6 @@
     <Compile Include="Migrations\202006062205438_madeprojectdeadlinenullable.cs" />
     <Compile Include="Migrations\202006062205438_madeprojectdeadlinenullable.designer.cs">
       <DependentUpon>202006062205438_madeprojectdeadlinenullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006070021395_nullableDeadline.cs" />
-    <Compile Include="Migrations\202006070021395_nullableDeadline.designer.cs">
-      <DependentUpon>202006070021395_nullableDeadline.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -539,6 +536,12 @@
     <Content Include="Views\Projects1\SeeAllProjects.cshtml" />
     <Content Include="Views\Notifications\ProjectManagerNotifications.cshtml" />
     <Content Include="Views\Projects1\TasksNotFinishedAndPassedDeadline.cshtml" />
+    <Content Include="Views\DevTasks1\Create.cshtml" />
+    <Content Include="Views\DevTasks1\Delete.cshtml" />
+    <Content Include="Views\DevTasks1\Details.cshtml" />
+    <Content Include="Views\DevTasks1\Edit.cshtml" />
+    <Content Include="Views\DevTasks1\Index.cshtml" />
+    <Content Include="Views\DevTasks1\TasksAssignedToUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -579,9 +582,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006062205438_madeprojectdeadlinenullable.resx">
       <DependentUpon>202006062205438_madeprojectdeadlinenullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006070021395_nullableDeadline.resx">
-      <DependentUpon>202006070021395_nullableDeadline.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
