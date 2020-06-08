@@ -24,6 +24,7 @@ namespace TaskManagerProject.Models
         static RoleManager<IdentityRole> projectManager = new RoleManager<IdentityRole>
             (new RoleStore<IdentityRole>(db));
 
+        [Authorize(Roles = "ProjectManager")]
         public List<string> GetAllTasks()
         {
             var result = db.DevTasks.Select(t => t.Name).ToList();
@@ -37,12 +38,15 @@ namespace TaskManagerProject.Models
 
             return result.ToList();
         }
+        [Authorize(Roles = "Project Manager")]
         public ICollection<int> TasksForProject(int projectId)
         {
             var result = db.DevTasks.Where(up => up.Project.Id == projectId).Select(t => t.Id);
 
             return result.ToList();
         }
+
+        [Authorize(Roles = "Project Manager")]
         public DevTask CreateDevTask( int id, string name, string description, DateTime deadline, int projectId)
         {
             DevTask newTask = new DevTask(id, name, description, deadline, projectId);
@@ -50,6 +54,7 @@ namespace TaskManagerProject.Models
             return newTask;
         }
 
+        [Authorize(Roles = "Project Manager")]
         public static void AssignDevTask(ApplicationUser user, DevTask task)
         {
             if(UserManager.checkUserRole(user.Id, "Developer"))
@@ -59,6 +64,7 @@ namespace TaskManagerProject.Models
                 db.SaveChanges();
             }
         }
+        [Authorize(Roles = "Project Manager")]
         public static void AssignDevsToTask(List<ApplicationUser> devs, DevTask task)
         {
             foreach(ApplicationUser dev in devs)
@@ -68,11 +74,13 @@ namespace TaskManagerProject.Models
                     AssignDevTask(dev, task);
                 }
             }
-        } 
+        }
+        [Authorize(Roles = "ProjectManager")]
         public static void UpdateDevTask(DevTask task)
         {
             db.SaveChanges();
         }
+        [Authorize(Roles = "ProjectManager")]
         public static void  DeleteDevTask(DevTask task)
         {
             db.DevTasks.Remove(task);
@@ -82,7 +90,15 @@ namespace TaskManagerProject.Models
         public static void AddComment(string comment, int id)
         {
             DevTask task = db.DevTasks.Find(id);
-            task.Comments.Add(comment);
+            if (task.Comments == null)
+            {
+                task.Comments = new List<string> { comment };
+            }
+            else
+            {
+                task.Comments.Add(comment);
+            }
+            
             db.SaveChanges();
         }
         //AddNote
@@ -109,25 +125,14 @@ namespace TaskManagerProject.Models
         }
         public static void SendNotification(string title, string description, ApplicationUser user, DevTask task)
         {
-            Notification notification = new Notification
-            {
-                Title = title,
-                Description = description,
-                ApplicationUserId = user.Id,
-                isOpened = false,
-                ProjectId = task.ProjectId,
-                DevTaskId = task.Id,
-            };
+            Notification notification = new Notification(title,  description, user.Id, task.Id, task.ProjectId);
             user.Notifications.Add(notification);
             task.Notification.Add(notification);
         }
         public static void SendNote(DevTask task, string title)
         {
-            Note note = new Note
-            {
-                DevTaskId = task.Id,
-                Title = title + " in " + task.Name,
-            };
+            string fullTitle = title + " in " + task.Name;
+            Note note = new Note(fullTitle, task.Id);
             task.Notes.Add(note);
         }
         //SendDeadlineAlert(Project) 
@@ -155,6 +160,20 @@ namespace TaskManagerProject.Models
                 SendNotification(title, description, r, task);
             }
             
+        }
+        public static void SendDeadlineNotification(DevTask task)
+        {
+            string title = "Upcoming Deadline: " + task.Name;
+            int projectId = task.ProjectId;
+            Project project = db.Projects.Find(projectId);
+
+            string description = task.Name + " in " + project.Name + " will be due in one day.";
+            List<ApplicationUser> recipients = task.ApplicationUsers.Where(u => UserManager.checkUserRole(u.Id, "Developer")).ToList();
+            foreach (ApplicationUser r in recipients)
+            {
+                SendNotification(title, description, r, task);
+            }
+
         }
     }
 }

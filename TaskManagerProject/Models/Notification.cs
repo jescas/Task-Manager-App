@@ -16,5 +16,15 @@ namespace TaskManagerProject.Models
         public virtual DevTask DevTask { get; set; }
         public int? ProjectId { get; set; }
         public virtual Project Project { get; set; }
+
+        public Notification(string title, string description, string userId, int? taskId, int? projectId)
+        {
+            this.Title = title;
+            this.Description = description;
+            this.isOpened = false;
+            this.ApplicationUserId = userId;
+            this.DevTaskId = taskId;
+            this.ProjectId = projectId;
+        }
     }
 }

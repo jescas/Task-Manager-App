@@ -143,15 +143,8 @@ namespace TaskManagerProject.Controllers
         }
         public static void Notify(string title, string description, Project project, DevTask task, ApplicationUser projectManager)
         {
-            Notification notification = new Notification
-            {
-                Title = title,
-                Description = description,
-                isOpened = false,
-                ProjectId = project.Id,
-                DevTaskId = task.Id,
-                ApplicationUserId = projectManager.Id,
-            };
+            Notification notification = new Notification(title, description, projectManager.Id, task.Id, project.Id);
+            
             projectManager.Notifications.Add(notification);
         }
         public ActionResult ProjectTaskCompletedNotification()

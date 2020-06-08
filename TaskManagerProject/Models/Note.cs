@@ -10,5 +10,10 @@ namespace TaskManagerProject.Models
         public string Title { get; set; }
         public int DevTaskId { get; set; }
         public virtual DevTask DevTask { get; set; }
+        public Note(string title, int taskId)
+        {
+            Title = title;
+            DevTaskId = taskId;
+        }
     }
 }

@@ -51,6 +51,7 @@ namespace TaskManagerProject.Controllers
         }
 
         // GET: DevTasks1/Create
+        [Authorize(Roles = "ProjectManager")]
         public ActionResult Create()
         {
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name");
@@ -76,6 +77,7 @@ namespace TaskManagerProject.Controllers
         }
 
         // GET: DevTasks1/Edit/5
+        [Authorize(Roles = "ProjectManager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -92,10 +94,9 @@ namespace TaskManagerProject.Controllers
         }
 
         // POST: DevTasks1/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "ProjectManager")]
         public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDate,Deadline,PercentCompleted,IsComplete,ProjectId,Priority")] DevTask devTask)
         {
             if (ModelState.IsValid)
@@ -109,6 +110,7 @@ namespace TaskManagerProject.Controllers
         }
 
         // GET: DevTasks1/Delete/5
+        [Authorize(Roles = "ProjectManager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -126,6 +128,7 @@ namespace TaskManagerProject.Controllers
         // POST: DevTasks1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "ProjectManager")]
         public ActionResult DeleteConfirmed(int id)
         {
             DevTask devTask = db.DevTasks.Find(id);
@@ -134,6 +137,7 @@ namespace TaskManagerProject.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "ProjectManager")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -181,90 +185,51 @@ namespace TaskManagerProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddNewComment(string comment, int id)
         {
-            /*if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 DevTaskHelper.AddComment(comment, id);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
-            }*/
+            }
 
             return PartialView(id);
         }
-  
-        // GET: DevTasks/AssignDevs/5
-        public ActionResult AssignDevs(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            DevTask devTask = db.DevTasks.Find(id);
-            if (devTask == null)
-            {
-                return HttpNotFound();
-            }
-            return View(devTask);
-        }
 
+        // GET: DevTasks/AssignDevs/5
+        [Authorize(Roles = "ProjectManager")]
+        public ActionResult AssignDevs(int id)
+        {
+            return View(id);
+        }
         // POST: DevTasks/AssignDevs/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        /*  [HttpPost]
-          [ValidateAntiForgeryToken]
-          public ActionResult AssignDevs([Bind(Include = "Id,Name,Description,StartDate,PercentCompleted,IsComplete,ProjectId")] DevTask devTask)
-          {
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "ProjectManager")]
+        public ActionResult AssignDevs(int[] devIds, int taskId)
+        {
               if (ModelState.IsValid)
               {
-                  List<ApplicationUser> devs = ;
+                  DevTask devTask = db.DevTasks.Find(taskId);
+                  List<ApplicationUser> devs = new List<ApplicationUser>();
+                  foreach(int id in devIds)
+                  {
+                      devs.Add(db.Users.Find(id));
+                  }
                   DevTaskHelper.AssignDevsToTask(devs, devTask);
                   db.SaveChanges();
                   return RedirectToAction("Index");
               }
-              return View(devTask);
-          }*/
-        // GET: DevTasks/Edit/5
-        /* public ActionResult SetPriority(int? id)
-         {
-             if (id == null)
-             {
-                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-             }
-             DevTask devTask = db.DevTasks.Find(id);
-             if (devTask == null)
-             {
-                 return HttpNotFound();
-             }
-             ViewBag.ProjectId = new SelectList(db.DevTasks, "Id", "Name", devTask.Priority);
-             return View(devTask);
-         }
+              return View(taskId);
+        }
 
-         // POST: DevTasks/Edit/5
-         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-         [HttpPost]
-         [ValidateAntiForgeryToken]
-         public ActionResult SetPriority([Bind(Include = "Id,Name,Description,StartDate,PercentCompleted,IsComplete,ProjectId")] DevTask devTask)
-         {
-             if (ModelState.IsValid)
-             {
-                 db.Entry(devTask).State = EntityState.Modified;
-                 db.SaveChanges();
-                 return RedirectToAction("Index");
-             }
-             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", devTask.ProjectId);
-             return View(devTask);
-         }*/
         // GET: DevTasks/Edit/5
         public ActionResult ReportBug(int id)
         {
             ViewBag.TaskId = id;
             return PartialView(id);
         }
-
         // POST: DevTasks/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ReportBug(int taskId, string description)

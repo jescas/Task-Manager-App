@@ -94,10 +94,32 @@
 
             if (!context.Notifications.Any())
             {
-                //Notification notificationOne = dth.SendNotification("Notification1", "first in user 1 and task 1", context.Users.First(), firstTask);
-
+                Notification notificationOne = new Notification("Notification1", "first in user 1 and task 1", context.Users.First().Id, firstTask.Id, null);
+                Notification notificationTwo = new Notification("Notification2", "second in user 1 and task 1", context.Users.First().Id, firstTask.Id, null);
+                Notification notificationThree = new Notification("Notification3", "first in user 1 and task 2", context.Users.First().Id, context.DevTasks.ToList()[1].Id, null);
+                Notification notificationFour = new Notification("Notification4", "second in user 1 and task 2", context.Users.First().Id, context.Projects.ToList()[1].Id, null);
+                Notification notificationFive = new Notification("Notification5", "first in user 2 and task 3", context.Users.ToList()[1].Id, context.Projects.ToList()[2].Id, null);
+                Notification notificationSix = new Notification("Notification6", "second in user 2 and task 3", context.Users.ToList()[1].Id, context.Projects.ToList()[2].Id, null);
+                Notification notificationSeven = new Notification("Notification5", "first in user 2 and task 4", context.Users.ToList()[1].Id, context.Projects.ToList()[3].Id, null);
+                Notification notificationEight = new Notification("Notification6", "second in user 2 and task 4", context.Users.ToList()[1].Id, context.Projects.ToList()[3].Id, null);
+                context.Notifications.Add(notificationOne);
+                context.Notifications.Add(notificationTwo);
+                context.Notifications.Add(notificationThree);
+                context.Notifications.Add(notificationFour);
+                context.Notifications.Add(notificationFive);
+                context.Notifications.Add(notificationSix);
+                context.Notifications.Add(notificationSeven);
             }
-            //Notes
+            if (!context.Notes.Any())
+            {
+                
+                foreach(DevTask d in context.DevTasks)
+                {
+                    string title = "First Note in " + d.Name;
+                    Note note = new Note(title, d.Id);
+                    context.Notes.Add(note);
+                }
+            }
             
             //if (firstTask.ApplicationUsers.Count() <= 0)
             //{
