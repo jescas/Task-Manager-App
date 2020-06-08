@@ -549,6 +549,9 @@
     <Content Include="Views\DevTasks1\UpdateCompletion.cshtml" />
     <Content Include="Views\DevTasks1\Worked.cshtml" />
     <Content Include="Views\DevTasks1\AddNewComment.cshtml" />
+    <Content Include="Views\Projects1\ViewTasksForProject.cshtml" />
+    <Content Include="Views\Projects1\ProjectsExceededTheirBudget.cshtml" />
+    <Content Include="Views\Projects1\CompletedProjectTotalCost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

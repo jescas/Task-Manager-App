@@ -143,5 +143,23 @@ namespace TaskManagerProject.Controllers
             var incompleteTasks = db.Projects.SelectMany(p => p.DevTasks);
             return View(incompleteTasks);
         }
+
+        public ActionResult ViewTasksForProject(int ProjId)
+        {
+            var project = db.Projects.Where(p => p.Id == ProjId).ToList();
+            return View(project);
+        }
+
+        public ActionResult ProjectsExceededTheirBudget()
+        {
+            var projects = ph.GetAllProjects();
+            return View(projects);
+        }
+
+        public ActionResult CompletedProjectTotalCost()
+        {
+            var completedProject = ph.GetAllProjects();
+            return View(completedProject);
+        }
     }
 }

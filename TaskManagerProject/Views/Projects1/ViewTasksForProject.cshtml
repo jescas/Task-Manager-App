@@ -1,0 +1,26 @@
+﻿@model List<TaskManagerProject.Models.Project>
+@{
+    ViewBag.Title = "ViewTasksForProject";
+}
+
+<h2>View Tasks For Project</h2>
+
+<br />
+<br />
+
+@foreach (var project in Model)
+{
+    <p>Project Name: @project.Name</p>
+    <p>Project Description: @project.Description</p>
+    <br />
+    <br />
+
+    foreach (var task in project.DevTasks.OrderByDescending(ob=>ob.PercentCompleted))
+    {
+        <p>Task Name: @task.Name</p>
+        <p>Task Percentage: @task.PercentCompleted</p>
+    }
+}
+
+
+
