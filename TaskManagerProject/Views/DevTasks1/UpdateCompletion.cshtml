@@ -1,0 +1,26 @@
+﻿@using (Html.BeginForm("UpdateCompletion"))
+{
+    @Html.AntiForgeryToken()
+    <form asp-controller="DevTask1Controller" asp-action="UpdateCompletion">
+        <p>
+            @if (ViewBag.Finish == false)
+            {
+                <div>
+                    New Percentage:
+                    <input type="text" name="percent">
+                </div>
+            }
+            else
+            {
+                <div>
+                    Confirm Completion:
+                    <input type="hidden" name="percent" value="100">
+                </div>
+            }
+            <input type="hidden" name="id" value="@(ViewBag.TaskId)">
+            <input type="submit" value="Update" />
+        </p>
+    </form>
+
+}
+
