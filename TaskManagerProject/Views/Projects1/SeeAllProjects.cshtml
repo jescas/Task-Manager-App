@@ -2,17 +2,29 @@
 @{
     ViewBag.Title = "SeeAllProjects";
 }
-
-<h2>See All Projects</h2>
-
-@foreach(var project in Model)
+<h1>PROJECT MANAGER DASHBOARD</h1>
+<br />
+@Html.ActionLink("Notifications", "ProjectManagerNotifications", "ProjectManagerNotifications") |
+@Html.ActionLink("Tasks For A Project", "ViewTasksForAProject", "Projects1") |
+@Html.ActionLink("Projects That Exceeded Budget", "ProjectsExceededTheirBudget", "Projects1") |
+@Html.ActionLink("Total Cost Of Completed Projects", "CompletedProjectTotalCost", "Projects1")
+<br />
+<h2>Projects:</h2>
+<br />
+@foreach (var project in Model)
 {
-<p>Current Project: @project.Name</p>
-<br />
-<p>Assigned Task: @project.DevTasks.Select(dt => dt.Description)</p>
-<br />
-<p>Assigned Developer: @project.DevTasks.Select(ta=>ta.ApplicationUsers.Select(un=>un.UserName))</p>
+    <p>Project Name: @project.Name</p>
+    <p>Assigned Tasks:</p>
+    foreach (var task in project.DevTasks)
+    {
+        <p>Task Name: @task.Name</p>
+        <p>Assigned Developer: @task.ApplicationUsers.Select(u => u.UserName)</p>
+    }
+    <br />
+    <br />
 }
+<br />
+<br />
 
 
-@Html.ActionLink("Notifications", "ProjectManagerNotifications", "ProjectManagerNotifications")
+
