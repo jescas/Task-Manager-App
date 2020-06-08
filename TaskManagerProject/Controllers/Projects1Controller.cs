@@ -132,30 +132,35 @@ namespace TaskManagerProject.Controllers
             base.Dispose(disposing);
         }
 
+        [Authorize(Roles = "ProjectManager")]
         public ActionResult SeeAllProjects()
         {
             var allProjects = ph.GetAllProjects();
             return View(allProjects);
         }
 
+        [Authorize(Roles = "ProjectManager")]
         public ActionResult TasksNotFinishedAndPassedDeadline()
         {
             var incompleteTasks = db.Projects.SelectMany(p => p.DevTasks);
             return View(incompleteTasks);
         }
 
+        [Authorize(Roles = "ProjectManager")]
         public ActionResult ViewTasksForProject(int ProjId)
         {
             var project = db.Projects.Where(p => p.Id == ProjId).ToList();
             return View(project);
         }
 
+        [Authorize(Roles = "ProjectManager")]
         public ActionResult ProjectsExceededTheirBudget()
         {
             var projects = ph.GetAllProjects();
             return View(projects);
         }
 
+        [Authorize(Roles = "ProjectManager")]
         public ActionResult CompletedProjectTotalCost()
         {
             var completedProject = ph.GetAllProjects();
