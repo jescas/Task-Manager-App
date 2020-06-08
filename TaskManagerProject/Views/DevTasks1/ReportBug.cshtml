@@ -1,0 +1,16 @@
+﻿
+@using (Html.BeginForm("ReportBug"))
+{
+    @Html.AntiForgeryToken()
+    <form asp-controller="DevTask1Controller" asp-action="ReportBug">
+        <p>
+                <div>
+                    Description:
+                    <input type="text" name="description">
+                </div>
+
+            <input type="hidden" name="taskId" value="@(ViewBag.TaskId)">
+            <input type="submit" value="Report Bug" />
+        </p>
+    </form>
+}

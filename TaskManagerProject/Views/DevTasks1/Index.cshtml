@@ -11,6 +11,7 @@
     
 </p>
 <table class="table">
+    @Html.ActionLink("User Task", "TasksAssignedToUser")
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Project.Name)
@@ -69,8 +70,10 @@
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Priority)
+        @Html.ActionLink("Report Bug", "ReportBug", new { id = item.Id })
     </td>
-    @if((Authorization.Equals(HttpContext.Current.User.Identity.Name, "Project Manager")))
+    
+    @if ((Authorization.Equals(HttpContext.Current.User.Identity.Name, "Project Manager")))
     {
         <td>
             @Html.ActionLink("Create New", "Create") |

@@ -552,6 +552,7 @@
     <Content Include="Views\Projects1\ViewTasksForProject.cshtml" />
     <Content Include="Views\Projects1\ProjectsExceededTheirBudget.cshtml" />
     <Content Include="Views\Projects1\CompletedProjectTotalCost.cshtml" />
+    <Content Include="Views\DevTasks1\ReportBug.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

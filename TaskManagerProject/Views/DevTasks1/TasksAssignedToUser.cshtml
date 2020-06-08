@@ -1,44 +1,20 @@
-﻿@model IEnumerable<TaskManagerProject.Models.DevTask>
+﻿@model TaskManagerProject.Models.ApplicationUser
+@{
+    ViewBag.Title = "TasksAssignedToUser";
+}
+<h1>DEVELOPER DASHBOARD</h1>
+<br />
+@Html.ActionLink(Model.Notifications.Count().ToString(), "ProjectManagerNotifications", "Notifications") 
 
-<!DOCTYPE html>
+<br />
+<h2>Tasks:</h2>
+<br />
+@foreach (var task in Model.DevTasks)
+{
+    <p>Task Name: @task.Name</p>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-        <table class="table">
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Project.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StartDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PercentCompleted)
-                        @{Html.RenderAction("UpdateCompletion", new { id = item.Id, finish = false });}
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsComplete)
-                        @if (!item.IsComplete)
-                        {
-                            <div> @{Html.RenderAction("UpdateCompletion", new { id = item.Id, finish = true });}</div>
-                        }
-                    </td>
-                </tr>
-            }
-        </table>
-    </div>
-</body>
-</html>
+    <br />
+    <br />
+}
+<br />
+<br />

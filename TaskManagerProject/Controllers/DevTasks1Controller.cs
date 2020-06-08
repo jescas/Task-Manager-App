@@ -166,7 +166,7 @@ namespace TaskManagerProject.Controllers
                 db.SaveChanges();
                 if(percent == 100)
                 {
-                    return RedirectToAction("AddNewComment", devTask);
+                    return RedirectToAction("AddNewComment", id);
                 }
                 return RedirectToAction("Index");
             }
@@ -235,14 +235,19 @@ namespace TaskManagerProject.Controllers
         public ActionResult ReportBug(int taskId, string description)
         {
             DevTask devTask = db.DevTasks.Find(taskId);
-            if (ModelState.IsValid)
+            if (devTask != null && description != null)
             {
 
                 DevTaskHelper.SendBugReport(devTask, description);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(devTask);
+            return PartialView(devTask);
+        }
+
+        public ActionResult TasksAssignedToUser()
+        {
+            return View(db.Users.First());
         }
     }
 }
