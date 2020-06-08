@@ -157,13 +157,15 @@ namespace TaskManagerProject.Controllers
         {
             string title = project.Name;
             string description = project.Description;
-            ApplicationUser projectManager = new ApplicationUser(); //change to corresponding PM
+            List<ApplicationUser> users = db.Users.Where(u => UserManager.checkUserRole(u.Id, "Project Manager")).ToList();
 
-            if((project.IsCompleted || task.IsComplete) || (DateTime.Now > project.Deadline && !task.IsComplete))
+            foreach (ApplicationUser projectManager in users)
             {
-                Notify(title, description, project, projectManager);
+                if ((project.IsCompleted || task.IsComplete) || (DateTime.Now > project.Deadline && !task.IsComplete))
+                {
+                    Notify(title, description, project, projectManager);
+                }
             }
-
         }
     }
 }
