@@ -139,18 +139,33 @@ namespace TaskManagerProject.Controllers
         public ActionResult ProjectManagerNotifications(string userId)
         {
             var result = db.Notifications.Where(n => n.ApplicationUserId == userId).Select(u => u.Title);
-            return View(result.ToList());
+            return View(result);
         }
-        public static void Notify(string title, string description, Project project, DevTask task, ApplicationUser projectManager)
+        public void Notify(string title, string description, Project project, ApplicationUser projectManager)
         {
-            Notification notification = new Notification(title, description, projectManager.Id, task.Id, project.Id);
-            
-            projectManager.Notifications.Add(notification);
+            Notification notification = new Notification
+            {
+                Title = title,
+                Description = description,
+                ProjectId = project.Id,
+                ApplicationUserId = projectManager.Id,
+            };
+            projectManager.Notifications.Add(notification); 
+            db.SaveChanges();
         }
-        public ActionResult ProjectTaskCompletedNotification()
+        public void ProjectCompletedNotification(Project project, DevTask task)
         {
-            //var result = db.Projects.Where(p=>p.IsCompleted).Select(p=>p.Id);
-            return View();
+            string title = project.Name;
+            string description = project.Description;
+            List<ApplicationUser> users = db.Users.Where(u => UserManager.checkUserRole(u.Id, "Project Manager")).ToList();
+
+            foreach (ApplicationUser projectManager in users)
+            {
+                if ((project.IsCompleted || task.IsComplete) || (DateTime.Now > project.Deadline && !task.IsComplete))
+                {
+                    Notify(title, description, project, projectManager);
+                }
+            }
         }
     }
 }

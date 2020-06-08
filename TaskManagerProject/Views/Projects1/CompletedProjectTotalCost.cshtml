@@ -1,0 +1,21 @@
+﻿@model ICollection<TaskManagerProject.Models.Project>
+@{
+    ViewBag.Title = "CompletedProjectTotalCost";
+}
+
+<h2>Completed Project Total Cost</h2>
+<br />
+<br />
+@foreach(var project in Model)
+{
+    if(project.IsCompleted)
+    {
+        <p>Project Name: @project.Name</p>
+        <p>Project Description: @project.Description</p>
+        <br />
+        <p>Project Total Cost: @project.TotalCost</p>
+        <br />
+        <br />
+    }
+}
+
